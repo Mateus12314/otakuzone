@@ -25,17 +25,17 @@ export default function Home() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{ padding: 10, width: "100%", marginBottom: 20 }}
-      />
+      />	
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10 }}>
-        {filtered.map(anime => (
-          <div key={anime.mal_id} style={{ background: "#111", padding: 10 }}>
-            <img src={anime.images.jpg.image_url} style={{ width: "100%" }} />
-            <p>{anime.title}</p>
-            <p>⭐ {anime.score}</p>
-          </div>
-        ))}
-      </div>
+        {filtered.map(anime => (<a href={`/anime/${anime.mal_id}`} style={{ textDecoration: "none", color: "inherit" }}>
+  <div key={anime.mal_id} style={{ background: "#111", padding: 10 }}>
+    <img src={anime.images.jpg.image_url} style={{ width: "100%" }} />
+    <p>{anime.title}</p>
+    <p>⭐ {anime.score}</p>
+  </div>
+</a>          </div>
+        ))}      </div>
 
     </div>
   );
