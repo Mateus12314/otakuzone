@@ -1,13 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function AnimePage({ params }: any) {
+export default function AnimePage({ params }: { params: { id: string } }) {
   const [anime, setAnime] = useState<any>(null);
 
   useEffect(() => {
-    fetch(`https://api.jikan.moe/v4/anime/${params.id}`)
-      .then(res => res.json())
-      .then(data => setAnime(data.data));
+    async function load() {
+      const res = await fetch(`https://api.jikan.moe/v4/anime/${params.id}`);
+      const data = await res.json();
+      setAnime(data.data);
+    }
+
+    load();
   }, [params.id]);
 
   if (!anime) {
@@ -16,7 +20,6 @@ export default function AnimePage({ params }: any) {
 
   return (
     <div style={{ background: "#000", color: "#fff", minHeight: "100vh", padding: 20 }}>
-
       <h1 style={{ color: "red" }}>{anime.title}</h1>
 
       <img
@@ -28,7 +31,6 @@ export default function AnimePage({ params }: any) {
 
       <p>⭐ Nota: {anime.score}</p>
       <p>🎬 Episódios: {anime.episodes}</p>
-
     </div>
   );
 }
