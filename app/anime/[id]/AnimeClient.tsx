@@ -33,4 +33,4 @@ export default function AnimeClient({ id }: { id: string }) {
       <p>🎬 Episódios: {anime.episodes}</p>
     </div>
   );
-}|
+}

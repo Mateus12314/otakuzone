@@ -6,7 +6,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch(https://api.jikan.moe/v4/anime?order_by=popularity&limit=50&page=1)
+    fetch("https://api.jikan.moe/v4/anime?order_by=popularity&limit=50&page=1")
       .then(res => res.json())
       .then(data => setAnimes(data.data));
   }, []);
