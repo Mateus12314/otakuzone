@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [animes, setAnimes] = useState<any[]>([]);
@@ -29,18 +30,25 @@ export default function Home() {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10 }}>
         {filtered.map(anime => (
-          <a href={`/anime/${anime.mal_id}`} style={{ textDecoration: "none", color: "inherit" }}>
+          <Link
+            key={anime.mal_id}
+            href={`/anime/${anime.mal_id}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <div style={{
               background: "#111",
               padding: 10,
               borderRadius: 10,
               transition: "0.3s",
             }}>
-              <img src={anime.images.jpg.image_url} style={{ width: "100%", borderRadius: 10 }} />
+              <img
+                src={anime.images.jpg.image_url}
+                style={{ width: "100%", borderRadius: 10 }}
+              />
               <p style={{ fontWeight: "bold" }}>{anime.title}</p>
               <p>⭐ {anime.score}</p>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 
